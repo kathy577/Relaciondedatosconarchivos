@@ -99,7 +99,7 @@ namespace Practica5Mayo
 
                 // Total general
                 decimal total = ventas.Sum(v => v.Importe);
-                lblTotalVentas.Text = "Total de Ventas: " + total;
+                lblTotalVentas.Text = "$" + total;
 
                 // Cliente con mayor compra
                 var totalPorCliente = consulta
@@ -107,7 +107,7 @@ namespace Practica5Mayo
                     .Select(g => new { Cliente = g.Key, Total = g.Sum(x => x.Importe) });
 
                 var mayorCompra = totalPorCliente.OrderByDescending(x => x.Total).First();
-                lblClienteMayor.Text = $"Cliente con Mayor compra: {mayorCompra.Cliente} ({mayorCompra.Total})";
+                lblClienteMayor.Text = $": {mayorCompra.Cliente} ({mayorCompra.Total})";
             }
             catch (Exception ex)
             {
@@ -116,6 +116,16 @@ namespace Practica5Mayo
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblClienteMayor_Click(object sender, EventArgs e)
         {
 
         }
