@@ -54,7 +54,7 @@
             // 
             this.lblT.AutoSize = true;
             this.lblT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblT.Location = new System.Drawing.Point(271, 149);
+            this.lblT.Location = new System.Drawing.Point(270, 161);
             this.lblT.Name = "lblT";
             this.lblT.Size = new System.Drawing.Size(135, 18);
             this.lblT.TabIndex = 3;
@@ -63,7 +63,7 @@
             // lblTotalVentas
             // 
             this.lblTotalVentas.AutoSize = true;
-            this.lblTotalVentas.Location = new System.Drawing.Point(432, 136);
+            this.lblTotalVentas.Location = new System.Drawing.Point(430, 166);
             this.lblTotalVentas.Name = "lblTotalVentas";
             this.lblTotalVentas.Size = new System.Drawing.Size(0, 13);
             this.lblTotalVentas.TabIndex = 4;

@@ -107,7 +107,7 @@ namespace Practica5Mayo
                     .Select(g => new { Cliente = g.Key, Total = g.Sum(x => x.Importe) });
 
                 var mayorCompra = totalPorCliente.OrderByDescending(x => x.Total).First();
-                lblClienteMayor.Text = $": {mayorCompra.Cliente} ({mayorCompra.Total})";
+                lblClienteMayor.Text = $" {mayorCompra.Cliente} ${mayorCompra.Total}";
             }
             catch (Exception ex)
             {
