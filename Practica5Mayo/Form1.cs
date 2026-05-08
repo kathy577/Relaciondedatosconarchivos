@@ -16,7 +16,8 @@ namespace Practica5Mayo
     {
         List<Cliente> clientes = new List<Cliente>();
         List<Venta> ventas = new List<Venta>();
-
+        string archivoClientes = "Clientes.txt";
+        string archivoVentas = "Ventas.txt";
         public Form1()
         {
             InitializeComponent();
@@ -48,72 +49,42 @@ namespace Practica5Mayo
 
         private void btnCargar_Click_1(object sender, EventArgs e)
         {
-            try
+            StreamReader leer = new StreamReader(archivoClientes);
+            string registro;
+            while (!leer.EndOfStream)
             {
-                // Limpiar listas
-                clientes.Clear();
-                ventas.Clear();
+                registro = leer.ReadLine();
+                string[] datos = registro.Split(",");
 
-                // Leer clientes
-                foreach (var linea in File.ReadAllLines("clientes.txt"))
-                {
-                    var datos = linea.Split(',');
-                    clientes.Add(new Cliente
-                    {
-                        IdCliente = int.Parse(datos[0]),
-                        Nombre = datos[1]
-                    });
-                }
+                //logica
+                dgvResultados.Rows.Add(datos[1],0);
 
-                // Leer ventas
-                foreach (var linea in File.ReadAllLines("ventas.txt"))
-                {
-                    var datos = linea.Split(',');
-                    ventas.Add(new Venta
-                    {
-                        IdVenta = int.Parse(datos[0]),
-                        IdCliente = int.Parse(datos[1]),
-                        Importe = decimal.Parse(datos[2])
-                    });
-                }
-
-                // Relacionar datos y mostrar en la grilla
-                var consulta = from v in ventas
-                               join c in clientes on v.IdCliente equals c.IdCliente
-                               select new { Cliente = c.Nombre, v.Importe };
-
-                // Limpiar la grilla antes de cargar
-                dgvResultados.Rows.Clear();
-
-                foreach (var v in ventas)
-                {
-                    var cliente = clientes.FirstOrDefault(c => c.IdCliente == v.IdCliente);
-
-                    if (cliente != null)
-                    {
-                        // Agregar fila con Cliente e Importe
-                        dgvResultados.Rows.Add(cliente.Nombre, v.Importe);
-                    }
-                }
+                //logica
 
 
-                // Total general
-                decimal total = ventas.Sum(v => v.Importe);
-                lblTotalVentas.Text = "Total de Ventas: " + total;
-
-                // Cliente con mayor compra
-                var totalPorCliente = consulta
-                    .GroupBy(x => x.Cliente)
-                    .Select(g => new { Cliente = g.Key, Total = g.Sum(x => x.Importe) });
-
-                var mayorCompra = totalPorCliente.OrderByDescending(x => x.Total).First();
-                lblClienteMayor.Text = $"Cliente con Mayor compra: {mayorCompra.Cliente} ({mayorCompra.Total})";
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar datos: " + ex.Message);
-            }
+            leer.Close();
+            leer.Dispose();
+
+
+           
         }
+        public int DevolverVenta(string idCliente)
+        {
+            int totalVentas = 0;
+
+            StreamReader leer = new StreamReader (archivoVentas)
+            string registro;
+            while (!leer.EndOfStream )
+            {
+                registro = leer.ReadLine();
+                string[] datos = registro.Split(",");
+
+
+            }
+        
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
